@@ -4,6 +4,7 @@ dotenv.config()
 const cors = require('cors')
 const connectToDB = require('./config/connectToDB.js')
 const journalRoutes = require("./routes/journalRoute.js")
+const favouritesRoutes = require("./routes/favouritesRoute.js")
 connectToDB(process.env.MONGO_URI)
 const app = express();
 
@@ -15,6 +16,7 @@ const corsOptions = {
 app.use(cors(corsOptions))
 app.use(express.json())
 app.use("/api/v1/journal", journalRoutes)
+app.use("/api/v1/favourites", favouritesRoutes)
 
 const port = process.env.PORT || 4000;
 app.listen(port, () =>
